@@ -4,6 +4,15 @@
     if(!isset($_GET['pid'])||$_GET['pid'==""]){
         header("Location: index.php");
     }
+    else{
+        $pid = $_GET['pid'];
+    }
+    $sql="SELECT * FROM product WHERE id =$pid";
+    $result = $con->query($sql);
+    if(!$result){
+        echo "Error : " .$con->error;
+    }
+
 ?>
 
 
