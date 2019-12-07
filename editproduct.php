@@ -1,7 +1,7 @@
 <?php
     session_start();
     include("connect.php");
-    if(!isset($_GET['pid'])||$_GET['pid'==""]){
+    if(!isset($_GET['pid'])||$_GET['pid']==""){
         header("Location: index.php");
     }
     else{
@@ -11,6 +11,14 @@
     $result = $con->query($sql);
     if(!$result){
         echo "Error : " .$con->error;
+    }
+    else{
+        if($result->num_rows>0){
+            $prd =$result->fetch_object();
+        }
+        else{
+            $prd=NULL;
+        }
     }
 
 ?>
@@ -40,7 +48,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Products</a></li>
                 </ul>
@@ -91,35 +99,35 @@
                 <div class="form-group">
                     <label for="name" class="control-label col-md-3">Name:</label>
                     <div class="col-md-9">
-                        <input type="text" name="txtName" class="form-control">
+                        <input type="text" name="txtName" class="form-control" value="<?php echo $prd->name;?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="description" class="control-label col-md-3">Description:</label>
                     <div class="col-md-9">
-                        <input type="text" name="txtDescription" class="form-control">
+                        <input type="text" name="txtDescription" class="form-control" value="<?php echo $prd->description;?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="price" class="control-label col-md-3">Price:</label>
                     <div class="col-md-9">
-                        <input type="text" name="txtPrice" class="form-control">
+                        <input type="text" name="txtPrice" class="form-control" value="<?php echo $prd->price;?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="stock" class="control-label col-md-3">Stock:</label>
                     <div class="col-md-9">
-                        <input type="text" name="txtStock" class="form-control">
+                        <input type="text" name="txtStock" class="form-control" value="<?php echo $prd->unintInStock;?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="picture" class="control-label col-md-3">Produce Picture:</label>
                     <div class="col-md-9">
-                        <input type="file" name="filepic" class="form-control-file" accept="image/*" >  
+                        <input type="file" name="filepic" class="form-control-file" accept="image/*">  
                     </div>
                 </div>
 
