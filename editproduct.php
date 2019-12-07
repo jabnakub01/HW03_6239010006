@@ -129,10 +129,12 @@
                     <div class="col-md-9">
                         <input type="file" name="filepic" class="form-control-file" accept="image/*">  
                     </div>
+                        <img src="img/product/<?php echo $prd->picture; ?>" alt="">
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
+                        <input type="hidden" name="hdnProductId" value="<?php echo $prd->id;?>">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                     </div>
